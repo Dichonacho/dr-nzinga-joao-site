@@ -18,6 +18,10 @@ Como rodar localmente
    npm run dev
    ```
 
+Variáveis de ambiente importantes
+
+- ADMIN_PASSWORD — senha do painel administrativo (ex: export ADMIN_PASSWORD=umaSenhaSegura)
+
 Deploy recomendado: Vercel (integração automática com o repositório)
 
 Próximos passos sugeridos
@@ -27,4 +31,18 @@ Próximos passos sugeridos
 - EMR/EHR: definir sistema a integrar ou criar endpoints seguros para integração.
 - Telemedicina: selecionar provedor (Jitsi/Daily/Twilio Video) e integrar com agendamentos.
 
-Se quiser, eu continuo e implemento o sistema de login e agendamento funcional, e começo as integrações.
+Administração (MVP)
+
+Incluí um painel administrativo básico com:
+- Login administrativo (POST /api/admin/login) — utiliza a variável de ambiente ADMIN_PASSWORD
+- Painel protegido em /admin com placeholders para Agendamentos, Pacientes e Conteúdo
+- Endpoints: /api/admin/check, /api/admin/logout
+
+Notas de segurança e próximos passos para produção
+- O mecanismo atual usa um cookie simples para prototipagem. Para produção recomendo:
+  - Usar NextAuth ou um provedor OAuth para autenticação robusta
+  - Armazenar sessões em um banco de dados (Redis) e usar tokens assinados (JWT)
+  - Garantir HTTPS e configurar SameSite/CORS corretamente
+  - Implementar controle de acesso por usuário (roles)
+
+Se quiser, eu posso implementar: painel CRUD para agendamentos e pacientes, integração com Stripe e Twilio, e autenticação com NextAuth. Basta dizer “implementar CRUD de agendamentos” ou “implemente autenticação com NextAuth”.
